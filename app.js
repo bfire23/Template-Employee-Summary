@@ -15,16 +15,16 @@ const render = require("./lib/htmlRenderer");
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 const questions = [
-    {
-        type: "list",
-        message: "What type of employee do you want to see",
-        name: "employee type",
-        choices: [
-            "Manager",
-            "Engineer",
-            "intern"
-        ],  
-    },
+    // {
+    //     type: "list",
+    //     message: "What type of employee do you want to see",
+    //     name: "employee type",
+    //     choices: [
+    //         "Manager",
+    //         "Engineer",
+    //         "intern"
+    //     ],  
+    // },
     {
         type: "input",
         message: "what is the manager's name",
