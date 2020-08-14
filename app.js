@@ -13,50 +13,147 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+const userChoice = [
+    {
+        type: "list",
+        messge: "What employee are you looking for?",
+        name: "employeeChoice",
+        choices: [
+            "Engineer",
+            "Intern",
+            "Done"
+        ]
+    }
 
-const questions = [
-    // {
-    //     type: "list",
-    //     message: "What type of employee do you want to see",
-    //     name: "employee type",
-    //     choices: [
-    //         "Manager",
-    //         "Engineer",
-    //         "intern"
-    //     ],  
-    // },
+]
+
+
+
+const managerQuestions = [
+
     {
         type: "input",
-        message: "what is the manager's name",
-        name: "managerName",  
+        message: "what is the manager's name?",
+        name: "managerName",
     },
     {
-        type: "number",
-        message: "What is manager's employee ID",
-        name: "managerID", 
+        type: "input",
+        message: "What is manager's employee ID?",
+        name: "managerID",
 
     },
     {
         type: "input",
-        message: "What is manager's email",
+        message: "What is manager's email?",
         name: "managerEmail",
     },
     {
         type: "type",
-        message: "What is manager's office number",
+        message: "What is manager's office number?",
         name: "officeNumber"
     },
 
 
+
+];
+
+const engineerQuestions = [
+    {
+        type: "input",
+        message: "What is the engineer's name?",
+        name: "engineerName"
+    },
+    {
+        type: "input",
+        message: "What is engineer's employee ID?",
+        name: "engineerID",
+
+    },
+    {
+        type: "input",
+        message: "What is manager's email?",
+        name: "engineerEmail",
+    },
+    {
+        type: "type",
+        message: "What is the engineer's github username?",
+        name: "github",
+    },
+
+];
+
+
+
+
+
+const internQuestions = [
+    {
+        type: "input",
+        message: "What is the intern's name?",
+        name: "internName"
+    },
+    {
+        type: "input",
+        message: "What is intern's employee ID?",
+        name: "internID",
+
+    },
+    {
+        type: "input",
+        message: "What is intern's email?",
+        name: "internEmail",
+    },
+    {
+        type: "type",
+        message: "What school does the intern attend?",
+        name: "internSchool"
+    },
+
 ]
-inquirer.prompt(questions)
-// console.log(questions)
+
+function employeeFunction() {
+    inquirer.prompt(userChoice)
+        .then(function (response) {
+            console.log(response);
+            
+            if (response.choices === "Intern") {
+                inquirer.prompt(nternQuestions)
+                    .then(function(response) {
+                        console.log(response);
+                    })
+            } else { 
+                (response.choices === "Engineer") 
+                inquirer.prompt(EngineerQuestions)
+                .then(function(response) {
+                    console.log(response);
+                })
+                 
+                
+            } 
+            
+            
+
+        })
+}
+inquirer.prompt(managerQuestions)
+    .then(function (response) {
+        employeeFunction()
+        console.log(response)
+
+    })
+
+
+
+
+
+
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
-render(questions);
-return
+// render(managerQuestions, engineerQuestions, internQuestions);
+// return
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
